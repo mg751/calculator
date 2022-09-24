@@ -1,53 +1,29 @@
-let add = function() {
-    let total = 0;
-    for (let i = 0; i < arguments.length; i++){
-        total = total + arguments[i];
-    };
-    return total;
-};
+
 
 let subtract = function() {
-    let total = arguments[0];
+    let result = arguments[0];
     for (let i = 1; i < arguments.length; i++){
-        total = total - arguments[i];
+        result = result - arguments[i];
     };
-    return total;
+    return result;
 };
 
 let multiply = function() {
-    let total = arguments[0];
+    let result = arguments[0];
     for (let i = 1; i < arguments.length; i++){
-        total *= arguments[i];
+        result *= arguments[i];
     };
-    return total;
+    return result;
 };
 
 let divide = function() {
-    let total = arguments[0];
+    let result = arguments[0];
     for (let i = 1; i < arguments.length; i++){
-        total /= arguments[i];
+        result /= arguments[i];
     };
-    return total;
+    return result;
 };
 
-let operate = function (num0, operator, num1){
-    let result = 0;
-    switch(operator) {
-        case "*":
-            return multiply(num0,num1);
-            break;
-        case "/":
-            return divide(num0, num1);
-            break;
-        case "+":
-            return add(num0, num1);
-            break;
-        case "-":
-            return subtract(num0, num1);
-            break;
-        default:
-            alert("Please enter a valid operator");
-}};
 
 
 // 5. Make the calculator work! You’ll need to store the first number that is 
@@ -60,6 +36,8 @@ let operate = function (num0, operator, num1){
 //This is the hardest part of the project. You need to figure out how to store 
 // all the values and call the operate function with them.
 
+//select dom elements
+
 const calcDisplay = document.getElementById("displayvalue");
 const numBtns = document.getElementById("numbers").children;
 const clearBtn = document.getElementById("clearbtn");
@@ -67,22 +45,89 @@ const multiplyBtn = document.getElementById("multiplybtn");
 const addBtn = document.getElementById("addbtn");
 const divideBtn = document.getElementById("dividebtn");
 const subtractBtn  = document.getElementById("subtractbtn");
-const equalsBtn  = document.getElementById("equalsbtn");
+const equalsBtn = document.getElementById("equalsbtn");
 
+let num0 = undefined;
+let num1 = undefined;
+let result = undefined;
+let firstInput = undefined;
+let nextInput = undefined;
 
-function storeInput(){
-    console.log(this.textContent);
+//functions
+
+function displayInput(){
     calcDisplay.textContent += this.textContent;
 };
 
 function clearInput(){
     calcDisplay.textContent = "";
-} 
+}; 
 
+function opAdd(){
+    firstInput = calcDisplay.textContent;
+    clearInput();
+    operator = "+";
+};
+
+function opMultiply(){
+    firstInput = calcDisplay.textContent;
+    clearInput();
+    operator = "*";
+};
+
+function opSubtract(){
+    firstInput = calcDisplay.textContent;
+    clearInput();
+    operator = "-";
+};
+
+function opDivide(){
+    firstInput = calcDisplay.textContent;
+    clearInput();
+    operator = "/";
+};
+
+
+let add = function() {
+    return result = (num0 + num1);
+};
+
+let operate = function (){
+    nextInput = calcDisplay.textContent;
+    num0 = parseInt(firstInput);
+    num1 = parseInt(nextInput);
+    switch(operator) {
+        case "*":
+            result = multiply(num0,num1);
+            calcDisplay.textContent = result;
+            break;
+        case "/":
+             result = divide(num0, num1);
+             calcDisplay.textContent = result;
+            break;
+        case "+":
+            result = add(num0, num1);
+            calcDisplay.textContent = result;
+            break;
+        case "-":
+            result = subtract(num0, num1);
+            calcDisplay.textContent = result;
+            break;
+        default:
+            alert("Please enter a valid operator");
+        }
+    };
+
+
+// add event listeners
 
 for (let i = 0; i < numBtns.length; i++) {
-    numBtns[i].addEventListener("click", storeInput);
+    numBtns[i].addEventListener("click", displayInput);
 }
 
 clearBtn.addEventListener("click", clearInput);
-
+addBtn.addEventListener("click", opAdd);
+equalsBtn.addEventListener("click", operate);
+multiplyBtn.addEventListener("click", opMultiply);
+subtractBtn.addEventListener("click", opSubtract);
+divideBtn.addEventListener("click", opDivide);
