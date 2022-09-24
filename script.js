@@ -30,8 +30,17 @@ let result;
 let firstInput;
 let nextInput;
 let storedNum;
-let equalsResult;
-let mode = 0;
+
+function fullClear() {
+    calcDisplay.textContent = "";
+    result = undefined;
+    firstInput = undefined;
+    nextInput = undefined;
+    storedNum = undefined;
+    num1 = undefined;
+    num0 = undefined;
+}
+
 
 function add () {
     let result = arguments[0];
@@ -73,6 +82,27 @@ function addOp () {
     calcDisplay.textContent = ""; 
 };
 
+function subtractOp () {
+    operator = "-";
+    firstInput = storedNum;
+    storedNum = 0;
+    calcDisplay.textContent = ""; 
+};
+
+function divideOp () {
+    operator = "/";
+    firstInput = storedNum;
+    storedNum = 0;
+    calcDisplay.textContent = ""; 
+};
+
+function multiplyOp () {
+    operator = "*";
+    firstInput = storedNum;
+    storedNum = 0;
+    calcDisplay.textContent = ""; 
+};
+
 
 function displayInput(){
     calcDisplay.textContent += this.textContent;
@@ -99,6 +129,15 @@ function operate (){
     if (operator == "+") {
         result = add(num0, num1);
         calcDisplay.textContent = result;
+    } else if (operator == "*") {
+        result = multiply(num0, num1);
+        calcDisplay.textContent = result;
+    } else if (operator == "/") {
+        result = divide(num0, num1);
+        calcDisplay.textContent = result;
+    } else if (operator == "-") {
+        result = subtract(num0, num1);
+        calcDisplay.textContent = result;
     }
 };
 
@@ -113,7 +152,9 @@ for (let i = 0; i < numBtns.length; i++) {
 clearBtn.addEventListener("click", fullClear);
 addBtn.addEventListener("click", addOp);
 equalsBtn.addEventListener("click", operate);
-
+multiplyBtn.addEventListener("click", multiplyOp);
+subtractBtn.addEventListener("click", subtractOp);
+divideBtn.addEventListener("click", divideOp);
 
 
 
@@ -128,12 +169,6 @@ equalsBtn.addEventListener("click", operate);
 //     calcDisplay.textContent = "";
 // }; 
 
-function fullClear() {
-    calcDisplay.textContent = "";
-    result = undefined;
-    firstInput = undefined;
-    nextInput = undefined;
-}
 
 
 // function opAdd () {
@@ -232,6 +267,4 @@ function fullClear() {
 
 
 
-// multiplyBtn.addEventListener("click", opMultiply);
-// subtractBtn.addEventListener("click", opSubtract);
-// divideBtn.addEventListener("click", opDivide);
+
