@@ -1,0 +1,28 @@
+* {
+    border: 1px solid lightgray;
+}
+
+#calculator-container {
+    display: flex;
+    justify-content: center;
+}
+
+#calculator {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#numbers {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    justify-content: center;
+}
+
+.numbtn {
+    width: 100px;
+    flex-basis: 0 0 33%;
+}
