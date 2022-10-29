@@ -1,10 +1,3 @@
-// stop clearing text on operator selection
-// clear text on number selection after operator has been chosen
-//
-
-
-
-
 const calcDisplay = document.getElementById("displayvalue");
 const numBtns = document.getElementById("numbers").children;
 const clearBtn = document.getElementById("clearbtn");
@@ -21,8 +14,6 @@ let firstInput;
 let nextInput;
 let storedNum;
 let counter = 0;
-let memory = [];
-let operator;
 
 function fullClear() {
     calcDisplay.textContent = "";
@@ -32,7 +23,7 @@ function fullClear() {
     storedNum = undefined;
     num1 = undefined;
     num0 = undefined;
-};
+}
 
 
 function add () {
@@ -41,7 +32,7 @@ function add () {
         result = result + arguments[i];
     };
     return result;
-};
+}
 
 let subtract = function() {
     let result = arguments[0];
@@ -69,13 +60,8 @@ let divide = function() {
 
 
 function addOp () {
-    if (operator !== "+" || operator === undefined) {
-        operator = "+";
-        counter = 0;
-    }
     if (counter > 0) {
-        operate();
-        counter--;
+        operate();;
     }
     operator = "+";
     firstInput = storedNum;
@@ -85,13 +71,8 @@ function addOp () {
 };
 
 function subtractOp () {
-    if (operator !== "-"|| operator === undefined) {
-        operator = ".";
-        counter = 0;
-    }
     if (counter > 0) {
-        operate();
-        counter--;
+        operate();;
     }
     operator = "-";
     firstInput = storedNum;
@@ -101,13 +82,8 @@ function subtractOp () {
 };
 
 function divideOp () {
-    if (operator !== "/"|| operator === undefined) {
-        operator = "/";
-        counter = 0;
-    }
     if (counter > 0) {
-        operate();
-        counter--;
+        operate();;
     }
     operator = "/";
     firstInput = storedNum;
@@ -117,13 +93,8 @@ function divideOp () {
 };
 
 function multiplyOp () {
-    if (operator !== "*"|| operator === undefined) {
-        operator = "*";
-        counter = 0;
-    }
     if (counter > 0) {
-        operate();
-        counter--;
+        operate();;
     }
     operator = "*";
     firstInput = storedNum;
@@ -138,15 +109,22 @@ function displayInput(){
     storedNum = parseInt(calcDisplay.textContent);
 };
 
+function getCurrentDisplayNum() {
+    return calcDisplay.textContent;
+};
 
 function fullClear() {
     calcDisplay.textContent = "";
     result = undefined;
     firstInput = undefined;
     nextInput = undefined;
-};
+    
+}
 
 function operate (){
+    if (operator === undefined) {
+        return;
+    }
     if (result){
         num0 = result
         num1 = storedNum
@@ -168,14 +146,14 @@ function operate (){
         result = subtract(num0, num1);
         calcDisplay.textContent = result;
     }
-    counter--;
 };
 
 
 
 for (let i = 0; i < numBtns.length; i++) {
     numBtns[i].addEventListener("click", displayInput);
-};
+    numBtns[i].addEventListener("click", operate);
+}
 
 clearBtn.addEventListener("click", fullClear);
 addBtn.addEventListener("click", addOp);
