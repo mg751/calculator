@@ -7,22 +7,68 @@
     justify-content: center;
 }
 
-#calculator {
-    height: 300px;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+@media only screen and (min-width: 756px) {
+   
+    #calculator {
+        height: 44vh;
+        width: 30vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }    
+    
 }
 
-#numbers {
+@media only screen and (max-width: 756px) {
+   
+    #calculator {
+        height:60vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }    
+    
+}
+
+
+#rows {
     display: flex;
-    flex-wrap: wrap;
-    width: 300px;
+    flex-direction: column;
+}
+
+
+#operators {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: space-evenly;
+
+}
+
+#operators > button {
+    height: 30px;
+    width: 30px;
+    margin: 8px;
+}
+
+#equalsbtn,
+#decimal,
+.numbtn {
+    width: 55px;
+    height: 55px;
+}
+
+#numbers > div {
+    display: flex;
     justify-content: center;
 }
 
-.numbtn {
-    width: 100px;
-    flex-basis: 0 0 33%;
+#ui {
+    display: flex;
+    justify-content: center;
+}
+
+#row4 {
+    display: flex;
 }

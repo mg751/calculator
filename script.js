@@ -6,7 +6,7 @@
 
 
 const calcDisplay = document.getElementById("displayvalue");
-const numBtns = document.getElementById("numbers").children;
+const numBtns = document.getElementsByClassName("numbtn");
 const clearBtn = document.getElementById("clearbtn");
 const multiplyBtn = document.getElementById("multiplybtn");
 const addBtn = document.getElementById("addbtn");
